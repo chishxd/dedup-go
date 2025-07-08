@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/chishxd/dedup-go/internal/hasher"
 	"github.com/chishxd/dedup-go/internal/scanner"
@@ -27,10 +28,14 @@ func main(){
 		} 
 		m[hash] = append(m[hash], f)
 	}
+
 	for hash, files := range m{
 		if len(files) > 1{
-			fmt.Println(hash)
-			fmt.Println(files)
+			fmt.Printf("Hash:	%s\n",hash)
+			fmt.Println(strings.Repeat("-", 73))
+			for _, p := range files{
+				fmt.Println(p)
+			}
 		}
 	}
 
